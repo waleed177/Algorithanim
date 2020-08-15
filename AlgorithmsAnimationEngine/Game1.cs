@@ -60,7 +60,7 @@ namespace AlgorithmsAnimationEngine {
 
             animation.PushFunctionStack("main");
             AnimationLanguage lang = new AnimationLanguage(animation);
-            lang.LoadCode(File.ReadAllText(@"C:\Users\waldohp\source\repos\AlgorithmsAnimationEngine\AlgorithmsAnimationEngine\Algo.txt"));
+            lang.LoadCode(File.ReadAllText("algorithm.txt"));
             lang.Compile()();
 
             //animation.PopFunctionStack();
