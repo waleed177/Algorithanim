@@ -1,0 +1,52 @@
+﻿Partition = (arr start end pivotId) {
+	f.pivot = f.arr[f.pivotId];
+	ArraySwap(f.arr, f.pivotId, f.end);
+	
+	f.i = f.start;
+	f.j = f.start;
+	Pointer(f.arr, "i", 0);
+	Pointer(f.arr, "j", 16);
+
+	for f.j = f.start f.j <= f.end f.j++:
+		if f.arr[f.j] < f.pivot:
+			ArraySwap(f.arr, f.i, f.j);
+			f.i++;
+
+	ArraySwap(f.arr, f.i, f.end);
+	Return(f.i);
+}
+
+RandomizedSelect = (arr start end i) {
+	if f.start == f.end:
+		Return(f.arr[f.start]);
+	else:
+		Pointer(f.arr, "start", 32);
+		Pointer(f.arr, "end", 48);
+		f.pivot = Partition(f.arr, f.start, f.end, Random(f.start, f.end));
+		Pointer(f.arr, "pivot",64);
+		f.k = 1 + f.pivot - f.start;
+		RemovePointer(f.arr, "pivot");
+		RemovePointer(f.arr, "start");
+		RemovePointer(f.arr, "end");
+		if f.k == f.i:
+			Return(f.arr[f.pivot]);
+		else if f.i < f.k:
+			Return(RandomizedSelect(f.arr, f.start, f.pivot-1, f.i));
+		else:
+			Return(RandomizedSelect(f.arr, f.pivot + 1, f.end, f.i - f.k));
+}
+
+main = (arr) {
+	f.res = RandomizedSelect(g.A, 0, 7, 2);
+}
+
+g.A = [8];
+g.A[0] = 1;
+g.A[1] = 10;
+g.A[2] = 5;
+g.A[3] = 3;
+g.A[4] = 23;
+g.A[5] = 4;
+g.A[6] = 55;
+g.A[7] = 78;
+main(g.A);
